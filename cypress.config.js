@@ -1,4 +1,4 @@
-const { defineConfig } = require("cypress");
+const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   e2e: {
@@ -6,5 +6,9 @@ module.exports = defineConfig({
       // implement node event listeners here
     },
     projectId: "7ubppc",
+    baseUrl: "https://opensource-demo.orangehrmlive.com",
+    supportFile: "cypress/support/commands.js"
   },
 });
+
+

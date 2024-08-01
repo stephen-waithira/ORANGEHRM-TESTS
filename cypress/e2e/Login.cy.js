@@ -26,9 +26,11 @@ describe('Login page', () => {
   it('should display error message upon attempt to login with empty text fields', () => {
     cy.get('input[name="username"]').clear();
     cy.get('input[name="password"]').clear();
-    cy.get("button[type='submit']").contains('Login').click()
-    cy.get('.oxd-input-field-error-message').should('have.text', 'Required')
+    cy.get("button[type='submit']").contains('Login').click();
+    cy.get('.oxd-input-field-error-message').eq(0).should('have.text', 'Required');
+    cy.get('.oxd-input-field-error-message').eq(1).should('have.text', 'Required');
   });
+  
 
   it('Should be able to Reset password', () => {
     cy.get('.orangehrm-login-forgot-header').contains('Forgot your password?').click();
