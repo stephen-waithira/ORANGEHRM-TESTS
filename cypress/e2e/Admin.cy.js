@@ -6,6 +6,7 @@ describe('Dashboard page', () => {
   
     it('Should Navigate to the Admin page', () => {
       cy.get('.oxd-main-menu-item--name').contains('Admin').click()
+      cy.wait(2000)
       cy.url().should('include', '/admin/viewSystemUsers');
       cy.get('.oxd-topbar-header-title').contains('User Management');
     });
@@ -26,6 +27,7 @@ describe('Dashboard page', () => {
         .click();
       cy.get('.oxd-autocomplete-text-input ').type('Orange Test');  
       cy.get('input[name="username"]').type('Adminadmin');
+
       cy.get('input[name="password"]').type('admin123');
       cy.get("button[type='submit']").contains('Save').click();
 
