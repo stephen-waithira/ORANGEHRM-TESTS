@@ -34,6 +34,7 @@ describe('Dashboard page', () => {
       it('Should Navigate to the Admin page', () => {
         cy.get('.oxd-table').within(() => {
           cy.contains('th', 'Username').should('exist');
+          cy.wait(2000)
           cy.contains('th', 'User Role').should('exist');
           cy.contains('th', 'Employee Name').should('exist');
           cy.contains('th', 'Status').should('exist');
