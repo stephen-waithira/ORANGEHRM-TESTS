@@ -20,6 +20,7 @@ describe('Dashboard page', () => {
     it('Should be able to add a new system user', () => {
       cy.get('.oxd-button--medium ').Contains('Add').click();
       cy.get('.oxd-select-text-input').click();
+      cy.wait(3000)
       cy.get('.oxd-select-text') 
         .find('option:nth-child(2)')    
         .click();
