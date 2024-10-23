@@ -1,12 +1,8 @@
-describe('Admin Page', () => {
-    beforeEach(() => {
-      cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
-      cy.url().should('include', '/login');
-      cy.get('input[name="username"]').type('Admin');
-      cy.get('input[name="password"]').type('admin123');
-      cy.get("button[type='submit']").contains('Login').click();
-      cy.url().should('include', '/dashboard');
-    });
+describe('Dashboard page', () => {
+  beforeEach(() => {
+  
+    cy.login();
+  });
   
     it('Should Navigate to the Admin page', () => {
       cy.get('.oxd-main-menu-item--name').contains('Admin').click()
@@ -34,13 +30,18 @@ describe('Admin Page', () => {
 
       
       });
-      cy.get('.oxd-table').within(() => {
-        cy.contains('th', 'Username').should('exist');
-        cy.contains('th', 'User Role').should('exist');
-        cy.contains('th', 'Employee Name').should('exist');
-        cy.contains('th', 'Status').should('exist');
-        cy.contains('th', 'Actions').should('exist');
-    });
+      it('Should Navigate to the Admin page', () => {
+        cy.get('.oxd-table').within(() => {
+          cy.contains('th', 'Username').should('exist');
+          cy.contains('th', 'User Role').should('exist');
+          cy.contains('th', 'Employee Name').should('exist');
+          cy.contains('th', 'Status').should('exist');
+          cy.contains('th', 'Actions').should('exist');
+      });
+      });
+    
+
+     
     });
 
   
