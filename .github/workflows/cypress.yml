@@ -23,17 +23,22 @@ jobs:
         with:
           node-version: '16'
 
+      - name: Install dependencies for Cypress
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk2.0-0 libgtk-3-0 libgbm-dev \
+            libnotify-dev libgconf-2-4 libnss3 libxss1 \
+            libasound2 xvfb
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Verify Cypress installation
-        run: npx cypress --version
-
-      - name: List project files
-        run: ls -R
-
-      - name: List Cypress test files
-        run: ls cypress/e2e/
-
       - name: Run Cypress tests
-        run: npx cypress run --spec "cypress/e2e/**/*.cy.js"
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1920x1080x24" npx cypress run
+
+      - name: Upload Cypress artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-artifacts
+          path: cypress/screenshots/**, cypress/videos/**
